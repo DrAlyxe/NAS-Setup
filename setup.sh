@@ -1,9 +1,10 @@
 #!/bin/bash 
 
 echo "Starting initial set up"
+sleep 3
 
 # Make sure we have the right modules downloaded
-apt install autoconf libtool libdrm-dev xorg xorg-dev openbox libx11-dev libgl1 libglx-mesa0 -y
+apt install autoconf libtool libdrm-dev xorg xorg-dev openbox libx11-dev libgl1 libglx-mesa0 vainfo -y
 apt install git cmake pkg-config meson libdrm-dev automake libtool -y
 
 # Make the necessary folders
@@ -20,9 +21,11 @@ make
 make install
 
 echo "Libva installed!"
+sleep 3
 
 # Build and install gmmlib
 echo "Building and installing gmmlib"
+sleep 3
 
 cd ~/workspace
 git clone https://github.com/intel/gmmlib.git
@@ -33,9 +36,11 @@ make -j"$(nproc)"
 make install
 
 echo "gmmlib installed!"
+sleep 3
 
 # Build and install the media driver
 echo "Building and installing the drivers"
+sleep 3
 
 cd ~/workspace
 mkdir media-driver
@@ -50,7 +55,11 @@ make -j"$(nproc)"
 make install
 
 echo "Drivers installed!"
+sleep 3
 
 echo "Finished!"
+
+echo "VAInfo:" 
+vainfo
 
 
